@@ -323,7 +323,7 @@ func getMacAddress() -> Data?
 
 func ioService(named name: String, wantBuiltIn: Bool) -> io_service_t?
 {
-	let master_port = kIOMasterPortDefault
+	let main_port = kIOMainPortDefault
 	var iterator = io_iterator_t()
 	
 	defer
@@ -334,8 +334,8 @@ func ioService(named name: String, wantBuiltIn: Bool) -> io_service_t?
 		}
 	}
 	
-	guard let matchingDict = IOBSDNameMatching(master_port, 0, name),
-		  IOServiceGetMatchingServices(master_port, matchingDict as CFDictionary, &iterator) == KERN_SUCCESS,
+	guard let matchingDict = IOBSDNameMatching(main_port, 0, name),
+		  IOServiceGetMatchingServices(main_port, matchingDict as CFDictionary, &iterator) == KERN_SUCCESS,
 		  iterator != IO_OBJECT_NULL
 	else
 	{
