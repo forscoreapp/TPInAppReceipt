@@ -324,8 +324,8 @@ func getMacAddress() -> Data?
 func ioService(named name: String, wantBuiltIn: Bool) -> io_service_t?
 {
 	// 0 is `kIOMasterPortDefault` / `kIOMainPortDefault`, but the first is deprecated
-        // And the second isn't available in Catalyst on Xcode 14.
-        let defaultPort: mach_port_t = 0
+	// And the second isn't available in Catalyst on Xcode 14.
+	let main_port: mach_port_t = 0
 	var iterator = io_iterator_t()
 	
 	defer
